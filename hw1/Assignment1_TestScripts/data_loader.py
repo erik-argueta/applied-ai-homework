@@ -5,5 +5,5 @@ import numpy as np
 import pandas as pd
 import data_process1 
 
-# data_process1.load_dataset("/home/erik-csuf/Documents/applied/hw1/Assignment1_TestScripts/GasProperties.csv")
-data_process1.load_dataset_np("/home/erik-csuf/Documents/applied/hw1/Assignment1_TestScripts/GasProperties.csv")
+# data_process1.load_dataset("hw1/Assignment1_TestScripts/GasProperties.csv")
+data_process1.load_dataset_np("hw1/Assignment1_TestScripts/GasProperties.csv")

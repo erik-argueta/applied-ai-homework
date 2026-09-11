@@ -31,9 +31,7 @@ def load_dataset(filename: str) -> list[list[float]]:
         for row in reader:                                              # for every row in the file
             GasProperties.append([float(value) for value in row])       # append to data: float-converted value for each value within the row
 
-    # print(GasProperties)
     return GasProperties 
-    raise NotImplementedError()
 
 @typechecked
 def load_dataset_np(filename: str) -> np.ndarray:
@@ -53,10 +51,8 @@ def load_dataset_np(filename: str) -> np.ndarray:
     Note: Numpy has a very useful csv file reader called genfromtxt.
     """
     GasProperties2 = np.genfromtxt(filename, dtype=float, skip_header=1, delimiter=',') # skip_header to skip initial row, delimiter to seperate by commas
-    print(GasProperties2)
     return GasProperties2
 
-    raise NotImplementedError()
 
 @typechecked
 def normalize_array(arr: list[list[float]], out_file: str | None = None) -> int:
@@ -79,8 +75,52 @@ def normalize_array(arr: list[list[float]], out_file: str | None = None) -> int:
     Note: Probably the most complicated function to write because you cant use numpy.
     I would spend some time on this to make sure that all the equations for metrics are correct.
     """
-    
-    raise NotImplementedError()
+    # ==========================================
+    # Much to refine; very much brute-forced it
+    # ==========================================
+
+    max_val = []
+    min_val = []
+    num_rows = len(arr)
+    total_sums = []
+    column_means = []
+    std_devs = []
+    normalized = []
+
+    num_columns = len(arr[0])
+
+    for column_index in range(num_columns - 1):
+        column_val = [row[column_index] for row in arr]         # determines column's row value
+        max_val.append(max(column_val))                         # appends maximum said value
+        min_val.append(min(column_val))                         # appends minimum said value
+        total_sums.append(sum(column_val))                      # sums entire column's rows
+
+        mean = sum(column_val) / num_rows
+        column_means.append(mean)
+
+        column_max = max(column_val)
+        column_min = min(column_val)
+
+        std_devs.append(
+            (sum((value - mean)**2 for value in column_val) / num_rows)**0.5           ## lack of math forces 0.5 exponent
+        )
+
+        normalized_column = [(value - column_min) / (column_max - column_min) for value in column_val]
+        normalized.append(normalized_column)
+
+    # print("max values: ", max_val)
+    # print("min values: ", min_val)
+    # print("column means", column_means)
+    # print("std_dev: ", std_devs)
+    # # print("normalized column: ", normalized_column)
+
+    # Export normalized column to file
+    with open(out_file, 'w') as f:
+        for row in normalized_column:
+            f.write(f"{row}\n")
+
+    return num_rows
+
 
 @typechecked
 def normalize_array_np(arr: np.ndarray, out_file: str | None = None) -> int:

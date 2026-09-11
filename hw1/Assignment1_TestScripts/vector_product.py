@@ -20,7 +20,7 @@ def dot_product(a: list[float], b: list[float]) -> float:
     Note: You can use standard for-loops or list comprehension if you want to be fancy.
     If you want a challenge, try writing this in 1 line.
     """
-    raise NotImplementedError()
+    return sum(a[i] * b[i] for i in range(len(a)))
 
 @typechecked
 def find_largest_dot_product_py(X_data: list[list[float]], Y_data: list[float]) -> int:
@@ -41,7 +41,8 @@ def find_largest_dot_product_py(X_data: list[list[float]], Y_data: list[float]) 
     Note: I recommend using the dot_product function you wrote above to complete this.
     The implementation for this function is pretty straightforward.
     """
-    raise NotImplementedError()
+    dot_product = [dot_product(row, Y_data) for row in X_data]
+    return dot_products.index(max(dot_products))
 
 @typechecked
 def dot_product_np(a: np.ndarray, b: np.ndarray) -> float:
@@ -60,7 +61,7 @@ def dot_product_np(a: np.ndarray, b: np.ndarray) -> float:
 
     Note: This is a 1-line solution, if you spend more than 10 mins on this, you may be overthinking.
     """
-    raise NotImplementedError()
+    return float(np.dot(a,b))
 
 @typechecked
 def find_largest_dot_product_np(X_data: np.ndarray, Y_data: np.ndarray) -> int:
@@ -81,7 +82,9 @@ def find_largest_dot_product_np(X_data: np.ndarray, Y_data: np.ndarray) -> int:
     Note: This might be a little more tricky to do, the solution itself is pretty short (3 lines) 
     but finding the right function in numpy might be difficult.
     """
-    raise NotImplementedError()
+    dot_products + np.dot(X_data, Y_data)
+
+    return int(np.argmax(dot_products))
 
 @typechecked
 def mat_mul_np(A: np.ndarray, B: np.ndarray) -> np.ndarray:
@@ -100,7 +103,7 @@ def mat_mul_np(A: np.ndarray, B: np.ndarray) -> np.ndarray:
     
     Note: This is a 1-line solution, if you spend more than 10 mins on this, you may be overthinking.
     """
-    raise NotImplementedError()
+    return np.matmul(A, B)
 
 @typechecked
 def mat_mul_t(A: t.Tensor, B: t.Tensor) -> t.Tensor:
@@ -119,7 +122,7 @@ def mat_mul_t(A: t.Tensor, B: t.Tensor) -> t.Tensor:
 
     Note: This is a 1-line solution, if you spend more than 10 mins on this, you may be overthinking.
     """
-    raise NotImplementedError()
+    return t.matmul(A, B)
 
 @typechecked
 def dot_product_t(a: t.Tensor, b: t.Tensor) -> t.tensor:
@@ -138,4 +141,4 @@ def dot_product_t(a: t.Tensor, b: t.Tensor) -> t.tensor:
     
     Note: This is a 1-line solution, if you spend more than 10 mins on this, you may be overthinking.
     """
-    raise NotImplementedError()
+    return t.dot(a, b)

@@ -18,7 +18,7 @@ def load_dataset_pd(filename: str) -> pd.DataFrame:
 
     Note: This is a 1-line solution, if you spend more than 10 mins on this, you may be overthinking.
     """
-    raise NotImplementedError()
+    return pd.read_csv(filename)
 
 @typechecked
 def split_xy(df: pd.DataFrame, y_axis: int = -1) -> tuple[np.ndarray, np.ndarray]:
@@ -38,7 +38,10 @@ def split_xy(df: pd.DataFrame, y_axis: int = -1) -> tuple[np.ndarray, np.ndarray
              as it will cause the autograder to fail, resulting in minimal credit.
     Note: A 2-line solution but can be tricky if you are not familiar with pandas.
     """
-    raise NotImplementedError()
+    X = df.drop(df.columns[y_axis], axis=1).to_numpy()
+    Y = df.iloc[:, y_axis].to_numpy()
+    
+    return X, Y
 
 @typechecked
 def split_training_test(
@@ -63,5 +66,9 @@ def split_training_test(
              as it will cause the autograder to fail, resulting in minimal credit.
     Note: If you are stuck, look into list slicing. 
     """
-    raise NotImplementedError()
+    X_train = X_data[:split_index]
+    Y_train = Y_data[:split_index]
+    X_test = X_data[split_index:]
+    Y_test = Y_data[split_index:]
 
+    return X_train, Y_train, X_test, Y_test

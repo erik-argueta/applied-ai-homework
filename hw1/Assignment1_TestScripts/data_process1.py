@@ -75,51 +75,91 @@ def normalize_array(arr: list[list[float]], out_file: str | None = None) -> int:
     Note: Probably the most complicated function to write because you cant use numpy.
     I would spend some time on this to make sure that all the equations for metrics are correct.
     """
-    # ==========================================
-    # Much to refine; very much brute-forced it
-    # ==========================================
-
-    max_val = []
-    min_val = []
+    # =================================
+    # Begin with declaring
+    # ================================
     num_rows = len(arr)
-    total_sums = []
     column_means = []
-    std_devs = []
-    normalized = []
+    std_devs_array = []
+    num_columns = len(arr[0])                                   # len([T, P, TC, SV, Idx]) 
+    focused_columns = num_columns - 1                           # columns excluding Idx (4)
 
-    num_columns = len(arr[0])
 
-    for column_index in range(num_columns - 1):
-        column_val = [row[column_index] for row in arr]         # determines column's row value
-        max_val.append(max(column_val))                         # appends maximum said value
-        min_val.append(min(column_val))                         # appends minimum said value
-        total_sums.append(sum(column_val))                      # sums entire column's rows
-
-        mean = sum(column_val) / num_rows
+    # ==========================
+    # Mean & Standard Deviation
+    # ==========================
+    for column_index in range(focused_columns):                 # for index in (1, 2, 3, 4)
+        column_val = [row[column_index] for row in arr]         # AI assist - establishes column values as 2D array containing focused columns 
+            # [T0, P0, TC0, SV0]
+            # [T1, P1, TC1, SV1]
+            # [T2, P2, TC2, SV2]
+                                                                 
+        mean = sum(column_val) / num_rows                       # w/in same iteration, the written column is summed and divided by rows 
         column_means.append(mean)
 
-        column_max = max(column_val)
-        column_min = min(column_val)
-
-        std_devs.append(
-            (sum((value - mean)**2 for value in column_val) / num_rows)**0.5           ## lack of math forces 0.5 exponent
+        std_devs_array.append(
+            (sum((value - mean) ** 2 for value in column_val) / num_rows)**0.5      # lack of math library
         )
 
-        normalized_column = [(value - column_min) / (column_max - column_min) for value in column_val]
-        normalized.append(normalized_column)
 
-    # print("max values: ", max_val)
-    # print("min values: ", min_val)
-    # print("column means", column_means)
-    # print("std_dev: ", std_devs)
-    # # print("normalized column: ", normalized_column)
 
-    # Export normalized column to file
-    with open(out_file, 'w') as f:
-        for row in normalized_column:
-            f.write(f"{row}\n")
+    # ======================
+    # Filtering Outliers
+    # ======================
+    filtered_rows = []
 
-    return num_rows
+    for row in arr:
+        outlier = False                                         # outlier is set to not present
+
+        for column_index in range(focused_columns):
+            mean = column_means[column_index]                   # mean is recalled from column_means by index
+            std_dev = std_devs_array[column_index]              # std dev is recalled from respective array by index
+
+            if (abs(row[column_index] - mean) > 2 * std_dev):
+                outlier = True                                  # outlier detected
+                break 
+
+        if outlier == False:
+            filtered_rows.append(row)
+
+
+
+    # =====================
+    # Manual Normalization
+    # =====================
+
+    normalized_rows = []
+    column_mins = []
+    column_maxes = []
+
+    for column_index in range(focused_columns):
+        column_val = [filtered_row[column_index] for filtered_row in filtered_rows]     # filtered_rows[c_index] row y row
+        column_mins.append(min(column_val))
+        column_maxes.append(max(column_val))
+
+    for row in filtered_rows:
+        normalized_row = []
+
+        for column_index in range(focused_columns):
+            column_max = column_maxes[column_index]
+            column_min = column_mins[column_index]
+
+            if column_max == column_mins:
+                normalized_rows.append(0.0)
+            else:
+                normalized_row.append((row[column_index] - column_min) / (column_max - column_min))
+
+        normalized_row.append(row[-1])
+        normalized_rows.append(normalized_row)
+
+    # AI assist with writing out rows
+    if out_file is not None:
+        with open(out_file, 'w', newline = '') as f:
+            writer = csv.writer(f)
+            writer.writerows(normalized_rows)
+
+    return len(normalized_rows)
+        
 
 
 @typechecked

@@ -167,7 +167,6 @@ def normalize_array(arr: list[list[float]], out_file: str | None = None) -> int:
     return len(normalized_rows)
         
 
-
 @typechecked
 def normalize_array_np(arr: np.ndarray, out_file: str | None = None) -> int:
     """
@@ -246,7 +245,7 @@ def load_dataset_pd(filename: str) -> pd.DataFrame:
 
     Note: This is a 1-line solution, if you spend more than 10 mins on this, you may be overthinking.
     """
-    return pd.read_csv(filename)
+    return pd.read_csv(filename, header=None, names=["T", "P", "TC", "SV", "Idx"])
 
 @typechecked
 def split_xy(df: pd.DataFrame, y_axis: int = -1) -> tuple[np.ndarray, np.ndarray]:

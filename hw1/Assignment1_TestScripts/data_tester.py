@@ -12,8 +12,54 @@ if __name__ == "__main__":
     '''
 
     # Main Driver
-    dataframe = data_loader.load_dataset_pd('hw1/Assignment1_TestScripts/GasProperties.csv')
-    X_data, Y_data = data_loader.split_xy(dataframe)
+
+    # Question 1(a)
+    print("=================")    
+    print("| Question 1(a) |")
+    print("=================")
+    
+
+    # =================
+    # Loading CSV
+    # =================
+    regular_array = data_loader.load_dataset('hw1/Assignment1_TestScripts/GasProperties.csv')
+    numpy_dataframe = data_loader.load_dataset_np('hw1/Assignment1_TestScripts/GasProperties.csv')
+
+    # =====================
+    # Performance Metrics
+    # =====================
+    print("  Array Method:")
+    start = time.perf_counter()
+    data_loader.normalize_array(regular_array, 'hw1/Assignment1_TestScripts/GasProperties_norm.csv')
+    array_time = time.perf_counter() - start 
+    print(f"  Normalization time: {array_time: .6f}")
+
+    print("\n  Numpy Method:")
+    start = time.perf_counter()
+    data_loader.normalize_array_np(numpy_dataframe, 'hw1/Assignment1_TestScripts/np_GasProperties_norm.csv')
+    numpy_time = time.perf_counter() - start 
+    print(f"  Normalization time: {numpy_time: .6f}")
+
+
+    # Question 1(b)
+    print("\n=================")
+    print("| Question 1(b) |")
+    print("=================")
+    pd_data = data_loader.load_dataset_pd('hw1/Assignment1_TestScripts/np_GasProperties_norm.csv')
+    X_data, Y_data = data_loader.split_xy(pd_data)
+
+    X_training, Y_training, X_testing, Y_testing = (data_loader.split_training_test(X_data, Y_data))
+
+    print("  X training:", X_training.shape)
+    print("  Y training:", Y_training.shape)
+    print("  X testing:", X_testing.shape)
+    print("  Y testing:", Y_testing.shape)
+
+
+    print("\n=======================")
+    print("| Question 2(a) & (b) |")
+    print("=======================")
+
 
     X_list = X_data.tolist()
     Y_list = Y_data.tolist()
@@ -26,11 +72,12 @@ if __name__ == "__main__":
     np_column = vector_product.find_largest_dot_product_np(X_data, Y_data)
     np_time = time.perf_counter() - start 
 
-    print(f"Largest Column: {py_column}")
-    print(f"Python time: {py_time:.6f} seconds.")
-    print(f"NumPy Largest Column: {np_column}")
-    print(f"Python time: {np_time:.6f} seconds.")
-    print(f"NumPy speedup: {py_time / np_time:.2f}x")
+    column_names = ["T", "P", "TC", "SV"]
+    print(f"  Python Largest Column: {column_names[py_column]}")
+    print(f"  Python time: {py_time:.6f} seconds.")
+    print(f"  NumPy Largest Column: {column_names[np_column]}")
+    print(f"  NumPy time: {np_time:.6f} seconds.")
+    print(f"  NumPy speedup: x{py_time / np_time:.2f}")
 
 
     # Matrix Multiplication

@@ -294,6 +294,8 @@ def split_training_test(
              as it will cause the autograder to fail, resulting in minimal credit.
     Note: If you are stuck, look into list slicing. 
     """
+    split_index = int(len(X_data) * split)
+
     X_train = X_data[:split_index]
     Y_train = Y_data[:split_index]
     X_test = X_data[split_index:]

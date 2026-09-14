@@ -15,4 +15,8 @@ if __name__ == "__main__":
     data_loader.normalize_array(arr_test, 'hw1/Assignment1_TestScripts/GasProperties_norm.csv')
     data_loader.normalize_array_np(np_arr, 'hw1/Assignment1_TestScripts/np_GasProperties_norm.csv')
 
+    pd_dataset = data_loader.load_dataset_pd('hw1/Assignment1_TestScripts/GasProperties.csv')
+    x, y = data_loader.split_xy(pd_dataset)
+    x_train, y_train, x_test, y_test = data_loader.split_training_test(x, y)
+
     pass

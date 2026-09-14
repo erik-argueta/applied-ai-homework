@@ -20,7 +20,7 @@ def dot_product(a: list[float], b: list[float]) -> float:
     Note: You can use standard for-loops or list comprehension if you want to be fancy.
     If you want a challenge, try writing this in 1 line.
     """
-    return sum(a[i] * b[i] for i in range(len(a)))
+    return float(sum(a[i] * b[i] for i in range(len(a))))
 
 @typechecked
 def find_largest_dot_product_py(X_data: list[list[float]], Y_data: list[float]) -> int:
@@ -41,7 +41,10 @@ def find_largest_dot_product_py(X_data: list[list[float]], Y_data: list[float]) 
     Note: I recommend using the dot_product function you wrote above to complete this.
     The implementation for this function is pretty straightforward.
     """
-    dot_product = [dot_product(row, Y_data) for row in X_data]
+    dot_products = [
+        dot_product([row[column] for row in X_data], Y_data)
+        for column in range(len(X_data[0]))
+    ]
     return dot_products.index(max(dot_products))
 
 @typechecked
@@ -61,7 +64,7 @@ def dot_product_np(a: np.ndarray, b: np.ndarray) -> float:
 
     Note: This is a 1-line solution, if you spend more than 10 mins on this, you may be overthinking.
     """
-    return float(np.dot(a,b))
+    return float(np.dot(a, b))
 
 @typechecked
 def find_largest_dot_product_np(X_data: np.ndarray, Y_data: np.ndarray) -> int:
@@ -82,7 +85,7 @@ def find_largest_dot_product_np(X_data: np.ndarray, Y_data: np.ndarray) -> int:
     Note: This might be a little more tricky to do, the solution itself is pretty short (3 lines) 
     but finding the right function in numpy might be difficult.
     """
-    dot_products + np.dot(X_data, Y_data)
+    dot_products = np.dot(X_data.T, Y_data)
 
     return int(np.argmax(dot_products))
 

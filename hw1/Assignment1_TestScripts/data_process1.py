@@ -183,5 +183,39 @@ def normalize_array_np(arr: np.ndarray, out_file: str | None = None) -> int:
     Note: The same function as normalize_array but using numpy to calculate the metrics.
     This function should be almost copy and paste with numpy functions.
     """
-    raise NotImplementedError()
+    num_rows = len(arr)
+    column_means = []
+    std_devs_array = []
+    num_columns = len(arr[0])                                   # len([T, P, TC, SV, Idx])
+    focused_columns = arr[:, :num_columns - 1]
 
+    # ==========================
+    # Calculate Mean & Std. Dev
+    # ==========================
+    column_means = np.mean(focused_columns, axis = 0)           # https://numpy.org/devdocs/reference/generated/numpy.mean.html
+    std_devs_array = np.std(focused_columns, axis = 0)          # https://numpy.org/devdocs/reference/generated/numpy.std.html
+
+    outlier_cap = np.abs(focused_columns - column_means)
+    non_outliers = np.all(outlier_cap <= 2* std_devs_array, axis = 1)
+    np_filtered = arr[non_outliers]
+
+    filtered_columns = np_filtered[:, :-1]
+    filtered_target = np_filtered[:, -1:]
+
+    column_mins = np.min(filtered_columns, axis = 0)
+    column_maxes = np.max(filtered_columns, axis = 0)
+    column_ranges = column_maxes - column_mins
+
+    normalized_columns = np.divide(
+        filtered_columns - column_mins,
+        column_ranges,
+        out=np.zeros_like(filtered_columns, dtype=float),
+        where=column_ranges != 0
+    )
+
+    normalized_arr = np.hstack((normalized_columns, filtered_target))
+
+    if out_file is not None:
+        np.savetxt(out_file, normalized_arr, delimiter=',')
+
+    return normalized_arr.shape[0]

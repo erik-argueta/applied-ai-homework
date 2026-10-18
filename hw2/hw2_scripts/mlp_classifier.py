@@ -38,8 +38,6 @@ subject_model.fit(X_train, y_train)
 print("\n3. Initial Hyperparameters:")
 print(f"Training Accuracy: {subject_model.score(X_train, y_train):.2%}")
 print(f"Test Accuracy: {subject_model.score(X_test, y_test):.2%}")
-# Training Accuracy: 94.17%
-# Test Accuracy : 96.67%
 
 
 
@@ -58,8 +56,6 @@ subject_model.fit(X_train, y_train)
 print("\n4. New Hyperparameters:")
 print(f"Training Accuracy: {subject_model.score(X_train, y_train):.2%}")
 print(f"Test Accuracy: {subject_model.score(X_test, y_test):.2%}")
-# Training Accuracy: 98.33%
-# Test Accuracy: 100.00%
 
 
 # ===================================================================================================================================
@@ -77,5 +73,3 @@ subject_model.fit(X_train, y_train)
 print("\n5. New Hyperparameters:")
 print(f"Training Accuracy: {subject_model.score(X_train, y_train):.2%}")
 print(f"Test Accuracy: {subject_model.score(X_test, y_test):.2%}")
-# Training Accuracy: 
-# Test Accuracy: 100.00%

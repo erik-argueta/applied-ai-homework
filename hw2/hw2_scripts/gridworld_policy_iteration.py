@@ -166,18 +166,77 @@ def random_policy(env):
 
 def policy_evaluation(env, V, pi, gamma, noise):
     V_new = V.copy()
+
     """
-    TODO: Implement one swep policy evaluation to compute V(s) given policy pi:
-    update V(s) given policy pi, the environment dynamics, and gamma
+    TODO: Implement one sweep policy evaluation to compute V(s)
+    given policy pi:
+    update V(s) given policy pi, the environment dynamics,
+    and gamma
     """
+
+    for r in range(env.H):
+        for c in range(env.W):
+            s = (r, c)
+
+            if env.is_terminal(s) or env.is_obstacle(s):
+                V_new[r, c] = 0.0
+                continue
+
+            value = 0.0
+
+            for a in ACTIONS:
+                action_prob = pi[r, c, a]
+
+                transitions = transition_dist(env, s, a, noise)
+
+                for s_next, transition_prob in transitions:
+                    next_r, next_c = s_next
+                    reward = env.reward(s, a, s_next)
+
+                    value += (
+                        action_prob
+                        * transition_prob
+                        * (reward + gamma * V[next_r, next_c])
+                    )
+
+            V_new[r, c] = value
+
     return V_new
 
 
 def policy_improvement(env, V, gamma, noise):
     pi_new = np.zeros((env.H, env.W, 4))
+
     """
-    TODO: Implement policy improvement: update pi greedily based on current V(s).
+    TODO: Implement policy improvement:
+    update pi greedily based on current V(s).
     """
+
+    for r in range(env.H):
+        for c in range(env.W):
+            s = (r, c)
+
+            if env.is_terminal(s) or env.is_obstacle(s):
+                continue
+
+            q_values = np.zeros(4)
+
+            for a in ACTIONS:
+                transitions = transition_dist(env, s, a, noise)
+
+                for s_next, transition_prob in transitions:
+                    next_r, next_c = s_next
+                    reward = env.reward(s, a, s_next)
+
+                    q_values[a] += transition_prob * (
+                        reward + gamma * V[next_r, next_c]
+                    )
+
+            best_value = np.max(q_values)
+            best_actions = np.flatnonzero(np.isclose(q_values, best_value))
+
+            pi_new[r, c, best_actions] = 1.0 / len(best_actions)
+
     return pi_new, True
 
 
@@ -185,9 +244,34 @@ def policy_iteration(env, gamma, noise, max_eval_iters=100, tol=1e-6):
     V = np.zeros((env.H, env.W))
     pi = random_policy(env)
     stable = False
+
     """
-    TODO: Combine policy evaluation and improvement to perform policy iteration.
+    TODO: Combine policy evaluation and improvement
+    to perform policy iteration.
     """
+
+    while not stable:
+        # Policy evaluation
+        for _ in range(max_eval_iters):
+            V_new = policy_evaluation(env, V, pi, gamma, noise)
+
+            delta = np.max(np.abs(V_new - V))
+            V = V_new
+
+            if delta < tol:
+                break
+
+        # Policy improvement
+        pi_new, stable = policy_improvement(env, V, gamma, noise)
+
+        # Check whether the policy has stopped changing.
+        if np.allclose(pi, pi_new):
+            stable = True
+        else:
+            stable = False
+
+        pi = pi_new
+
     return V, pi
 
 

@@ -2,6 +2,7 @@
 from sklearn import datasets
 from sklearn.cluster import KMeans
 from sklearn.metrics import confusion_matrix
+from scipy.optimize import linear_sum_assignment
 import numpy as np
 
 iris = datasets.load_iris()
@@ -17,6 +18,7 @@ model.fit(X)
 clusters = model.labels_
 centroids = model.cluster_centers_
 
+print("\n2. K-Means Clustering (K = 3):")
 print("\nCluster Centroids:")
 print(centroids)
 
@@ -28,7 +30,8 @@ for i in range(3):
     centroid = centroids[i]
 
     rmse = np.sqrt(
-        np.mean(np.sum((cluster_points - centroid) ** 2, axis=1))
+        np.sum((cluster_points - centroid) ** 2)
+        / len(cluster_points)
     )
 
     print(f"\nCluster {i}:")
@@ -36,3 +39,17 @@ for i in range(3):
     print(f"RMSE: {rmse:.4f}")
 
 # comparison between clusters and results from mlp_classifier.py
+print("\n4. Cluster vs Actual Class:")
+
+matrix = confusion_matrix(y, clusters, labels=[0, 1, 2])
+
+print("\nConfusion Matrix:")
+print(matrix)
+
+rows, cols = linear_sum_assignment(-matrix)
+
+correct = matrix[rows, cols].sum()
+accuracy = correct / len(y)
+
+print("\n5. K-Means Clustering Accuracy:")
+print(f"Accuracy: {accuracy:.2%}")

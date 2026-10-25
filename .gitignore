@@ -1,2 +1,5 @@
 # venvs
 .venv
+
+# GitHub repo from Hw2 containing py-game Agent
+hw2/hw2_scripts/snake-ai-pytorch

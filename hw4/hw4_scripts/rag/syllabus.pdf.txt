@@ -1,0 +1,241 @@
+Syllabus                                                                                                                             Applied Artificial Intelligence (CPSC 254)                                  
+ 
+1/5 
+ Applied Artificial Intelligence (CPSC 254) 
+ 
+Catalog Course Description 
+Concepts of modern Artificial Intelligence (AI), AI capabilities and their applications, societal 
+impacts, and ethical considerations. Identification of domain-specific problems and development 
+of solutions using AI and computing technologies, including modern open-source projects and 
+tools. 
+ 
+Student Learning Goals 
+Upon completion of this course, students will be able to: 
+• Understand and explain the concepts of Artificial Intelligence (AI), modern AI capabilities, 
+AI applications, open-source projects and tools, their societal impact, and ethical issues; 
+• Identify domain-specific problems suitable for AI applications; 
+• Develop applications that solve domain-specific problems using modern AI and computing 
+technologies, including available open-source projects and tools;  
+• Effectively communicate and present their AI-based solutions to a general audience.  
+ 
+Credits: 3 units 
+ 
+Prerequisite: GE Area A.3 (Critical Thinking) or B.4 (Quantitative Reasoning) 
+ 
+Instructor: Christopher Ryu, Ph.D. 
+    Office: CS-421  
+ 
+ 
+Phone: (657) 278-7231     
+    Email: tryu@fullerton.edu   
+ 
+ 
+Office Hours: Mon and Wed 2:15 pm – 4:00 pm and 5:15pm – 5:30 pm or ZOOM appointment 
+ 
+Textbook, lecture notes, and course materials 
+• No textbook is required.  
+• Lecture notes and supplemental materials will be posted. 
+ 
+Important Dates 
+CSUF’s Academic Calendar is posted online at «http://apps.fullerton.edu/AcademicCalendar/». 
+The Academic Calendar contains all the campus closures and holidays you should be aware of. 
+CSUF’s Admissions Calendar is posted online at 
+«http://admissions.fullerton.edu/apps/calendars.aspx». The Admissions Calendar contains all the 
+major dates with respect to adding, dropping, and withdrawing from your classes. 
+The final exam schedule is at Final Exam Schedule - Scheduling Office | CSUF. Makeup exams 
+are only available by advance request for documented exceptional circumstances. 
+ 
+Administrative drops 
+Any student who misses the first two consecutive class meetings may be dropped from this class 
+unless he/she contacts the instructor or the Computer Science department within 24 hours.  
+Drop policy 
+A new university withdrawal policy went into effect beginning the spring 1997 semester (UPS 
+300.016). The policy "stipulates that authorization to withdraw after the second week and prior 
+Syllabus                                                                                                                             Applied Artificial Intelligence (CPSC 254)                                  
+ 
+2/5 
+to the last three weeks of instruction shall be granted for only the most serious reasons. A serious 
+reason is defined as a physical, medical, emotional, or other condition that has the effect of 
+limiting the student's full participation in the class….  The reason must be documented by the 
+student…." The new University Policy also states specifically that "poor academic performance 
+is NOT evidence of a serious reason for withdrawal." 
+ 
+Communication 
+You have a CSUF-supplied email account, and that is the only way I have of reaching you 
+outside class. Check your email and course page daily for important class announcements and 
+individual messages. I try to respond to emails within two working days, but occasionally may 
+take longer than that. Plan accordingly, especially around deadlines.  
+ 
+Attendance and class participation 
+You are expected to attend all lectures and actively participate in discussion and activities. 
+Regular attendance is essential for success in this class, and you are responsible for any materials 
+covered during missed lectures. 
+ 
+Students who complete at least 50% of the pop quizzes or class activities administered without 
+prior announcement will receive 70% of the full credit. Additional completion will increase the 
+credit proportionally, up to full credits for participation and attendance. There will be no make-
+up pop quizzes or class activities. 
+ 
+Assignments 
+There will be multiple assignments. Detailed information about assignments/projects will be 
+announced later. The grade is based strictly on the quality of the work that shows understanding 
+and applicability of the materials, not based on the "hard work component."  
+ 
+Third-party work (code, artwork, etc.) may not be used in student work without prior instructor 
+consent. Failure to gain and document instructor consent will be construed as willful academic 
+dishonesty. When a third party's work is incorporated into student work after gaining instructor 
+consent, failure to wholly document the work's origin, copyright and license will be construed as 
+willful academic 
+dishonesty. 
+ 
+Exams 
+There will be multiple exams to measure individual performance on major topics discussed. 
+Exam questions may include all types, such as T/F, multiple choice, short answer, etc. All exams 
+will be closed books and notes. 
+ 
+Makeup policy: If you are absent from the exam and have a valid and documented excuse (e.g., 
+Doctor’s note), such as an illness, a death in your family, or another equally compelling reason, 
+the weight of your final will be increased by the weight of the exam. Without a valid excuse, you 
+will receive a zero score for the exam/quiz, and the final weight will remain unchanged.  
+ 
+Final exam 
+No final exam  
+Syllabus                                                                                                                             Applied Artificial Intelligence (CPSC 254)                                  
+ 
+3/5 
+ 
+Bonus work may be given only when necessary. However, after the last day of the class, no 
+extra work will be given to raise your scores.  
+ 
+Check all your scores before the semester is over. 
+*For every assignment and project you have turned in and exam you have taken, the record will 
+be posted on the class page. You are responsible for checking your record. If you find any 
+discrepancy on your record, you need to let me know about it as soon as possible (at least 
+BEFORE the final grade is given). I strongly recommend that you keep all your records of 
+your work with the timestamp until you receive your final grade. 
+ 
+Grading Policy 
+Your grade will be determined by several of your activities, as shown below.  
+ 
+Class activities 
+Weights in Percentage 
+Class participation and attendance 
+7% 
+Assignments 
+43% 
+Exams 
+50% 
+Total 
+100% 
+ 
+* The final grade is computed by weighted sum, ∑𝑤𝑤𝑖𝑖𝑥𝑥𝑖𝑖, where 𝑤𝑤𝑖𝑖 is the weight shown in the 
+above table and 𝑥𝑥𝑖𝑖 is your score on the basis of the 100 percentile. Letter grades will be assigned 
+using the plus/minus scheme as follows (>= indicates the range minimum): 
+ 
+      A: >= 92% A-: >= 90% 
+B+: >= 87% B: >= 82% B-: >= 80% 
+C+: >= 77% C: >= 72% C-: >= 70% 
+D+: >= 67% D: >= 62% D-: >= 60% 
+ 
+*Grades may be assigned by your performance relative to the class average, especially when the 
+class average is low (e.g., < 80). However, no one will be penalized if the class as a whole does 
+excellent work. If given, the weight of bonus work or quiz may be determined by me, 
+considering the class average within 5% of the overall score.  
+ 
+AI Use Policy 
+In this course, the use of AI tools, such as Large Language Models (LLMs), is permitted or 
+encouraged for completing assignments/projects, e.g., writing code and rephrasing short answers. 
+However, you should understand any AI-generated code you submit and be able to demonstrate 
+your contribution to the assignment. No AI tools are allowed during exams unless otherwise 
+stated, since exams are intended to evaluate your understanding of the material. 
+ 
+Academic Dishonesty 
+Academic dishonesty, such as plagiarism or cheating, will result in a grade of F in this course. Repeat 
+offenses may have more severe consequences, up to and including expulsion from the University. 
+The following is taken from the University Rules (UPS 300,021): 
+"Academic dishonesty includes such things as cheating, inventing false information or 
+citations, plagiarism, and helping someone else commit an act of academic dishonesty. It 
+Syllabus                                                                                                                             Applied Artificial Intelligence (CPSC 254)                                  
+ 
+4/5 
+usually involves an attempt by a student to show possession of a level of knowledge or 
+skill which he/she in fact, does not possess." 
+"Cheating is defined as the act of obtaining or attempting to obtain credit for work by the 
+use of any dishonest, deceptive, fraudulent, or unauthorized means. Examples of cheating 
+include, but are not limited to, the following: using notes or aids or the help of other 
+students on tests and examinations in ways other than those expressly permitted by the 
+instructor, plagiarism as defined below, tampering with the grading procedures, and 
+collaborating with others on any assignment where such collaboration is expressly 
+forbidden by an instructor. Violation of this prohibition of collaboration shall be deemed 
+an offense for the person or persons collaborating on the work, in addition to the person 
+submitting the work." 
+"Plagiarism is defined as the act of taking work of another and offering it as one's own 
+without giving credit to that source. When sources are used in a paper, acknowledgment 
+of the original author or source must be made through appropriate references and, if 
+directly quoted, quotation marks or indentations must be used." 
+ 
+Student information for course syllabus 
+https://fdc.fullerton.edu/teaching/student-info-syllabi.html 
+ 
+Technical Support 
+In case of technical problems with the learning management system, please contact the help desk 
+at (657) 278-8888. 
+ 
+Disabled Student Services 
+The University requires students with disabilities to register with the Office of Disabled Student 
+Services (DSS) within the first week of classes. The office of Disability Support Services' 
+website is http://www.fullerton.edu/DSS/. They can be reached by phone at (657) 278-3117 or 
+TDD at 657-278-2786. Their email address is dsservices@fullerton.edu. Their office is located in 
+University Hall, room 101. Students requesting accommodations should inform the instructor 
+during the first week of classes about any disability or special needs that may require specific 
+arrangements/accommodations related to attending class sessions, completing course 
+assignments, writing papers or quizzes/tests/examinations." 
+ 
+Emergency Policy (earthquakes, fire, etc.) 
+For your own safety and the safety of others, each student is expected to read and understand the 
+guidelines 
+published at «http://prepare.fullerton.edu/campuspreparedness/». Should an emergency occur, 
+follow the 
+instructions given to you by faculty, staff, and public safety officials. An emergency information 
+recording is available by calling the Campus Operation and Emergency Closure line at 657-278-
+4444. 
+ 
+Syllabus                                                                                                                             Applied Artificial Intelligence (CPSC 254)                                  
+ 
+5/5 
+Tentative Lecture Schedule 
+ 
+A tentative schedule ("subject to change") for this class is shown below: 
+ 
+Weeks 
+Topics 
+Artificial Intelligence (AI) 
+1–2 
+An overview of artificial intelligence 
+AI capabilities and real-world applications 
+The impacts of AI on society: social and ethical issues 
+High-Performance Computing 
+2–3 
+Computing fundamentals, coding tools and environment, and open-source projects 
+Review of basic Python programming 
+High-performance computing for AI applications 
+Machine Learning and Deep Learning 
+4–7 
+An overview of machine learning, reinforcement learning, and deep learning 
+Artificial Neural Networks: Perceptron, MLP, Convolutional Neural Networks (CNNs) 
+Computer vision: Image classification, object detection and recognition, face 
+recognition, digit and character recognition from images 
+Natural Language Processing (NLP) and Large Language Models (LLMs) 
+8–11 
+An overview of NLP 
+Text processing, text classification, and sentiment analysis 
+Natural language understanding and generation 
+LLMs, pretraining, finetuning, RAG 
+Conversational agents, speech recognition, and voice generation 
+Agentic AI and Generative AI 
+11–15 
+Agentic AI: Autonomous intelligent agents, Agentic AI frameworks, AI workflow 
+automation 
+Generative AI: Image generation, music generation, image translation, text-to-image 
+synthesis 
+ 

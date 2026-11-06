@@ -1,3 +1,8 @@
+
+# TODO: 
+# (e) Save the vector index and any required configuration so subsequent runs can reuse them instead
+#     of rebuilding the index unnecessarily.
+
 import os, sys, pymupdf, pathlib 
 import textract
 import tiktoken
@@ -70,24 +75,6 @@ def create_chunks(text, n, tokenizer, overlap=0):
         yield tokens[i:j]
         i = max(i + 1, j - overlap)
 
-# Extract chunks
-def extract_chunk(document,template_prompt):
-    prompt = template_prompt.replace('<document>',document)
-    messages = [
-            {"role": "system", "content": "You help extract information from documents."},
-            {"role": "user", "content": prompt}
-            ]
-    response = client.chat.completions.create(
-            model='gpt-4', 
-            messages=messages,
-            temperature=0,
-            max_tokens=1500,
-            top_p=1,
-            frequency_penalty=0,
-            presence_penalty=0
-        )
-    return "1." + response.choices[0].message.content
-
 # Add document chunks and their source information to ChromaDB.
 def add_data(collection, chunks, source=None):
     documents = [chunk.strip() for chunk in chunks if chunk and chunk.strip()]
@@ -117,7 +104,7 @@ def ask_user(collection):
 # =============================================
 
 """Chroma Initialization"""
-client = chromadb.Client()
+client = chromadb.PersistentClient(path=".")
 syllabus_collection = client.create_collection(name="syllabus")
 
 
@@ -125,9 +112,9 @@ syllabus_collection = client.create_collection(name="syllabus")
 # Document Ingestion
 # ==========================================================
 '''
-1. Extract txt and create chunks (PyMuPDF -> Python)
-2. Generate embeddings (OpenAI embedding model)
-3. Store in ChromaDB (Embeddings + txt + metadata)
+1. Extract txt and create chunks 
+2. Generate embeddings 
+3. Store in ChromaDB 
 '''
 fname = sys.argv[1]     # gets document filename 
 with pymupdf.open(fname) as doc: 
@@ -138,21 +125,14 @@ clean_text = text_extraction(fname)
 
 # Initialise tokenizer
 tokenizer = tiktoken.get_encoding("cl100k_base")
-results = []
     
+# Generate chunks and feed into tokenizer
 chunks = create_chunks(clean_text, 75, tokenizer, overlap=10)
 text_chunks = [tokenizer.decode(chunk) for chunk in chunks]
 
+# Add the chunks to the chromadb vector
 add_data(syllabus_collection, text_chunks, source=fname)
 user_query, context = ask_user(syllabus_collection)
-
-
-# print(text_chunks)
-
-# for index, chunk in enumerate(text_chunks, start=1):
-#     print(f"--- Chunk {index} ---")
-#     print(chunk.strip())
-#     print()
 
 
 # ==========================================================
@@ -161,7 +141,7 @@ user_query, context = ask_user(syllabus_collection)
 '''
 1. Embed the question 
 2. Query ChromaDB (Retreive most relevant syllabus chunks)
-3. Send retreived content + questin to GPT 
+3. Send retreived content + question to GPT 
 4. Generate syllabus-grounded answer.
 '''
 
@@ -175,7 +155,14 @@ prompt = f"{user_query}. Use this context for answering: {context}"
 response = client.chat.completions.create(
     model="gpt-oss",
     messages=[
-        {"role": "system", "content": "You are a course advisor. Use only the infomation given. Do not assume or create information."},
+        {
+            "role": "system",
+            "content": (
+                "Use only the infomation given. Use the text only, not markdown style."
+                "If the answer is not in the syllabus, say so; do not assume or create "
+                "information."
+            ),
+        },
         {"role": "user", "content": prompt}
     ],
 )

@@ -1,9 +1,6 @@
-
-# TODO: 
-# (e) Save the vector index and any required configuration so subsequent runs can reuse them instead
-#     of rebuilding the index unnecessarily.
-
-import os, sys, pymupdf, pathlib 
+import os
+import sys
+import pathlib 
 import textract
 import tiktoken
 import chromadb     # per assignment instructions
@@ -35,6 +32,7 @@ def text_extraction(filepath):
     return "\n\n".join(paragraphs)
 
 # Split a text into smaller chunks of size n, preferably ending at the end of a sentence
+# AI assisted with this chunk heavily
 def create_chunks(text, n, tokenizer, overlap=0):
     """Yield token-list chunks of at most 1.5 * n tokens.
 
@@ -104,9 +102,8 @@ def ask_user(collection):
 # =============================================
 
 """Chroma Initialization"""
-client = chromadb.PersistentClient(path=".")
+client = chromadb.PersistentClient(path="./chroma_test")
 syllabus_collection = client.get_or_create_collection(name="syllabus")
-
 
 # ==========================================================
 # Document Ingestion
@@ -117,23 +114,21 @@ syllabus_collection = client.get_or_create_collection(name="syllabus")
 3. Store in ChromaDB 
 '''
 fname = sys.argv[1]     # gets document filename 
-# with pymupdf.open(fname) as doc: 
-#     text = chr(12).join([page.get_text() for page in doc])
-#
-# pathlib.Path(fname + ".txt").write_bytes(text.encode())
-clean_text = text_extraction(fname)
 
 # Initialise tokenizer
 tokenizer = tiktoken.get_encoding("cl100k_base")
-    
-# Generate chunks and feed into tokenizer
-chunks = create_chunks(clean_text, 200, tokenizer, overlap=75)
-text_chunks = [tokenizer.decode(chunk) for chunk in chunks]
 
-# Add the chunks to the chromadb vector
-add_data(syllabus_collection, text_chunks, source=fname)
+if syllabus_collection.count() == 0:
+    clean_text = text_extraction(fname)
+    # Generate chunks to feed into tokenizer
+    chunks = create_chunks(clean_text, 200, tokenizer, overlap=40)
+    # Tokenizer
+    text_chunks = [tokenizer.decode(chunk) for chunk in chunks]
+    # Add chunks to chromaDB vector
+    add_data(syllabus_collection, text_chunks, source=fname)
+
+
 user_query, context = ask_user(syllabus_collection)
-
 
 # ==========================================================
 # Question Answering
@@ -158,9 +153,8 @@ response = client.chat.completions.create(
         {
             "role": "system",
             "content": (
-                "Use only the infomation given. Use the text only, not markdown style."
-                "If the answer is not in the syllabus, say so; do not assume or create "
-                "information."
+                "Use only the infomation given. Use text only, do not output anything that is rendered as markdown."
+                "If the answer is not found in the syllabus, say so; do not assume or create information."
             ),
         },
         {"role": "user", "content": prompt}

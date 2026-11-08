@@ -105,7 +105,7 @@ def ask_user(collection):
 
 """Chroma Initialization"""
 client = chromadb.PersistentClient(path=".")
-syllabus_collection = client.create_collection(name="syllabus")
+syllabus_collection = client.get_or_create_collection(name="syllabus")
 
 
 # ==========================================================
@@ -117,17 +117,17 @@ syllabus_collection = client.create_collection(name="syllabus")
 3. Store in ChromaDB 
 '''
 fname = sys.argv[1]     # gets document filename 
-with pymupdf.open(fname) as doc: 
-    text = chr(12).join([page.get_text() for page in doc])
-
-pathlib.Path(fname + ".txt").write_bytes(text.encode())
+# with pymupdf.open(fname) as doc: 
+#     text = chr(12).join([page.get_text() for page in doc])
+#
+# pathlib.Path(fname + ".txt").write_bytes(text.encode())
 clean_text = text_extraction(fname)
 
 # Initialise tokenizer
 tokenizer = tiktoken.get_encoding("cl100k_base")
     
 # Generate chunks and feed into tokenizer
-chunks = create_chunks(clean_text, 75, tokenizer, overlap=10)
+chunks = create_chunks(clean_text, 200, tokenizer, overlap=75)
 text_chunks = [tokenizer.decode(chunk) for chunk in chunks]
 
 # Add the chunks to the chromadb vector

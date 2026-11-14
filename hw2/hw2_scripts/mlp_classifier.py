@@ -1,19 +1,22 @@
 # =======================
-# 1. Load "iris flower" 
+# 1. Load "iris flower"
 # =======================
-from sklearn import datasets 
+import numpy as np
+from sklearn import datasets
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-import numpy as np
+
 iris = datasets.load_iris()
 
 
 # ===============================================================
 # 2. Split 80% of original into training; 20% into test dataset
 # ===============================================================
-X, y = iris['data'], iris['target']
+X, y = iris["data"], iris["target"]
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
 
 scaler = StandardScaler()
 
@@ -30,7 +33,9 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.tree import DecisionTreeClassifier
 
 subject_model = MLPClassifier(
-    hidden_layer_sizes=(3,),        # ...sizes=(3,) -> one layer with three neurons;  sizes=(5, 2) -> two hidden layers with five and two neurons
+    hidden_layer_sizes=(
+        3,
+    ),  # ...sizes=(3,) -> one layer with three neurons;  sizes=(5, 2) -> two hidden layers with five and two neurons
     random_state=42,
 )
 
@@ -40,16 +45,15 @@ print(f"Training Accuracy: {subject_model.score(X_train, y_train):.2%}")
 print(f"Test Accuracy: {subject_model.score(X_test, y_test):.2%}")
 
 
-
 # =====================================================================================================
-# 4. Adjust or change any MLP hyperparameters (except for adding more layers or neurons) to enhance 
-#       classification performance.  
+# 4. Adjust or change any MLP hyperparameters (except for adding more layers or neurons) to enhance
+#       classification performance.
 # =====================================================================================================
 
 subject_model = MLPClassifier(
     hidden_layer_sizes=(3,),
     random_state=42,
-    max_iter=700,      # default is 200
+    max_iter=700,  # default is 200
 )
 
 subject_model.fit(X_train, y_train)
@@ -59,14 +63,14 @@ print(f"Test Accuracy: {subject_model.score(X_test, y_test):.2%}")
 
 
 # ===================================================================================================================================
-# 5. Increase the network complexity by adding more layers and/or neurons until the new architecture shows the improved accuracy. 
+# 5. Increase the network complexity by adding more layers and/or neurons until the new architecture shows the improved accuracy.
 #       Briefly explain if you were able to improve the classification performance.
 # ===================================================================================================================================
 subject_model = MLPClassifier(
-    hidden_layer_sizes=(5,2),
+    hidden_layer_sizes=(5, 2),
     random_state=42,
     max_iter=1500,
-    solver='lbfgs'      # The default is 'adam'; is an optimizer in the family of quasi-Newton methods.
+    solver="lbfgs",  # The default is 'adam'; is an optimizer in the family of quasi-Newton methods.
 )
 
 subject_model.fit(X_train, y_train)

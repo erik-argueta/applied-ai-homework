@@ -3,10 +3,13 @@ name = "applied-ai-homework"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.11"
 dependencies = [
-    "matplotlib>=3.11.2",
-    "numpy>=2.5.4",
-    "pandas>=3.0.6",
-    "scikit-learn>=1.9.1",
+    "numpy==1.26.4",
+    "pandas==2.2.3",
+    "scikit-learn==1.5.2",
+    "torch==2.3.0",
+    "torchtext==0.18.0",
+    "torchdata==0.8.0",
+    "portalocker",
 ]

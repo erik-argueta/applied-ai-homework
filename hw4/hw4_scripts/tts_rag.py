@@ -1,0 +1,160 @@
+"""Ask the syllabus RAG application a question and speak its answer."""
+
+from __future__ import annotations
+
+import argparse
+import sys
+import wave
+from pathlib import Path
+
+import numpy as np
+
+from rag_solo import answer_question
+
+
+def synthesize_answer(
+    text: str,
+    output_path: str,
+    rate: int = 150,
+    voice_index: int | None = None,
+) -> Path:
+    """Convert answer text to a WAV file using pyttsx3."""
+    try:
+        import pyttsx3
+    except ImportError as exc:
+        raise RuntimeError(
+            "pyttsx3 is required for text-to-speech. Install it with "
+            "`pip install pyttsx3`."
+        ) from exc
+
+    output = Path(output_path)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        engine = pyttsx3.init()
+    except Exception as exc:
+        raise RuntimeError(
+            "Could not start the pyttsx3 voice engine. Linux may require an "
+            "eSpeak voice engine such as espeak-ng."
+        ) from exc
+
+    try:
+        engine.setProperty("rate", rate)
+        if voice_index is not None:
+            voices = engine.getProperty("voices")
+            if not 0 <= voice_index < len(voices):
+                raise ValueError(
+                    f"--voice-index must be between 0 and {len(voices) - 1}"
+                )
+            engine.setProperty("voice", voices[voice_index].id)
+        engine.save_to_file(text.strip(), str(output))
+        engine.runAndWait()
+    except ValueError:
+        raise
+    except Exception as exc:
+        raise RuntimeError(f"Could not synthesize the answer: {exc}") from exc
+    finally:
+        engine.stop()
+
+    if not output.is_file() or output.stat().st_size == 0:
+        raise RuntimeError(f"TTS did not create an audio file at {output}")
+    return output
+
+
+def play_wav(audio_path: Path) -> tuple[bool, str]:
+    """Play a PCM WAV through the default output device."""
+    try:
+        import sounddevice as sd
+
+        with wave.open(str(audio_path), "rb") as wav_file:
+            channels = wav_file.getnchannels()
+            sample_rate = wav_file.getframerate()
+            sample_width = wav_file.getsampwidth()
+            frames = wav_file.readframes(wav_file.getnframes())
+
+        dtype_by_width = {1: np.uint8, 2: np.int16, 4: np.int32}
+        if sample_width not in dtype_by_width:
+            return False, f"unsupported WAV sample width ({sample_width} bytes)"
+
+        audio = np.frombuffer(frames, dtype=dtype_by_width[sample_width])
+        if channels > 1:
+            audio = audio.reshape(-1, channels)
+        sd.play(audio, sample_rate)
+        sd.wait()
+        return True, "Playback completed."
+    except Exception as exc:
+        return False, str(exc)
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(
+        description="Send a question through syllabus RAG and speak the answer."
+    )
+    parser.add_argument(
+        "--question",
+        help="question to ask; if omitted, enter it at the prompt",
+    )
+    parser.add_argument(
+        "--audio-out",
+        default="tts_answer.wav",
+        help="path for the synthesized WAV (default: tts_answer.wav)",
+    )
+    parser.add_argument(
+        "--rate", type=int, default=150, help="speech rate in words per minute"
+    )
+    parser.add_argument(
+        "--voice-index", type=int, help="optional pyttsx3 voice index"
+    )
+    parser.add_argument(
+        "--top-k",
+        type=int,
+        default=3,
+        help="number of syllabus chunks to retrieve (default: 3)",
+    )
+    parser.add_argument(
+        "--no-playback",
+        action="store_true",
+        help="save the WAV without attempting playback",
+    )
+    args = parser.parse_args()
+
+    question = args.question if args.question is not None else input("Question: ")
+    if not question.strip():
+        parser.error("question cannot be empty")
+    if args.rate <= 0:
+        parser.error("--rate must be greater than zero")
+    if args.top_k <= 0:
+        parser.error("--top-k must be greater than zero")
+
+    try:
+        print(f"Question: {question.strip()}")
+        answer, _ = answer_question(question, top_k=args.top_k)
+        if not answer.strip():
+            raise RuntimeError("RAG returned an empty answer.")
+        print(f"Answer: {answer}")
+
+        audio_path = synthesize_answer(
+            answer,
+            output_path=args.audio_out,
+            rate=args.rate,
+            voice_index=args.voice_index,
+        )
+    except (FileNotFoundError, RuntimeError, ValueError) as exc:
+        print(f"TTS/RAG error: {exc}", file=sys.stderr)
+        return 2
+
+    print(f"Audio file: {audio_path}")
+    if args.no_playback:
+        print("Playback skipped (--no-playback).")
+        return 0
+
+    played, status = play_wav(audio_path)
+    if played:
+        print(status)
+    else:
+        print(f"Audio playback unavailable: {status}")
+        print(f"The generated WAV is available at: {audio_path}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

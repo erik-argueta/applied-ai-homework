@@ -12,4 +12,7 @@ dependencies = [
     "torchtext==0.18.0",
     "torchdata==0.8.0",
     "portalocker",
+    "SpeechRecognition",
+    "sounddevice",
+    "pyttsx3",
 ]

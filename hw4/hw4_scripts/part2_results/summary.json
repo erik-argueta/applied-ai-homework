@@ -1,0 +1,10 @@
+{
+    "sample_size": 200,
+    "random_seed": 42,
+    "mlp_accuracy": 0.935,
+    "mlp_macro_precision": 0.9352001700844004,
+    "agent_accuracy": 0.86,
+    "agent_average_latency_seconds": 0.9044803879350013,
+    "agent_total_time_seconds": 180.910024259,
+    "invalid_agent_responses": 0
+}

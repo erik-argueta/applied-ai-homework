@@ -1,9 +1,10 @@
+import json
 import os
 import sys
-import pathlib 
-import textract
+import pathlib
+import fitz
 import tiktoken
-import chromadb     # per assignment instructions
+import chromadb
 from openai import OpenAI
 
 # ====================================================
@@ -11,23 +12,18 @@ from openai import OpenAI
 # ====================================================
 
 """Reads the pdf and extracts text only; AI improved the function"""
+
 def text_extraction(filepath):
-    rough_text = textract.process(str(filepath), method="pdfminer").decode(
-        "utf-8", errors="replace"
-    )
-    lines = [" ".join(line.split()) for line in rough_text.splitlines()]
+    """Extract text from the syllabus PDF."""
+
     paragraphs = []
-    current = []
 
-    for line in lines:
-        if line:
-            current.append(line)
-        elif current:
-            paragraphs.append(" ".join(current))
-            current = []
+    with fitz.open(str(filepath)) as document:
+        for page in document:
+            text = page.get_text("text")
 
-    if current:
-        paragraphs.append(" ".join(current))
+            if text.strip():
+                paragraphs.append(text.strip())
 
     return "\n\n".join(paragraphs)
 

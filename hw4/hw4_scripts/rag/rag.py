@@ -1,10 +1,12 @@
+import argparse
 import os
-import sys
-import pathlib 
+import pathlib
 import textract
 import tiktoken
 import chromadb     # per assignment instructions
 from openai import OpenAI
+
+DEFAULT_PERSIST_DIRECTORY = pathlib.Path(__file__).resolve().parent / "chroma_test"
 
 # ====================================================
 # Functions
@@ -89,76 +91,102 @@ def add_data(collection, chunks, source=None):
         ],
     )
 
-def ask_user(collection):
-    query = input("What would you like to know?\n> ")
-    results = collection.query(query_texts=[query], n_results=1)
-    matches = results["documents"][0]
-    context = "\n\n".join(matches)
+def retrieve_context(collection, query, n_results=1):
+    """Return the most relevant stored text for a question."""
+    if not isinstance(query, str) or not query.strip():
+        raise ValueError("question must be a non-empty string")
+    count = collection.count()
+    if count == 0:
+        raise RuntimeError("The RAG collection has no indexed document chunks.")
 
-    return query, context
-
-# =============================================
-# MAIN
-# =============================================
-
-"""Chroma Initialization"""
-client = chromadb.PersistentClient(path="./chroma_test")
-syllabus_collection = client.get_or_create_collection(name="syllabus")
-
-# ==========================================================
-# Document Ingestion
-# ==========================================================
-'''
-1. Extract txt and create chunks 
-2. Generate embeddings 
-3. Store in ChromaDB 
-'''
-fname = sys.argv[1]     # gets document filename 
-
-# Initialise tokenizer
-tokenizer = tiktoken.get_encoding("cl100k_base")
-
-if syllabus_collection.count() == 0:
-    clean_text = text_extraction(fname)
-    # Generate chunks to feed into tokenizer
-    chunks = create_chunks(clean_text, 200, tokenizer, overlap=40)
-    # Tokenizer
-    text_chunks = [tokenizer.decode(chunk) for chunk in chunks]
-    # Add chunks to chromaDB vector
-    add_data(syllabus_collection, text_chunks, source=fname)
-
-
-user_query, context = ask_user(syllabus_collection)
-
-# ==========================================================
-# Question Answering
-# ==========================================================
-'''
-1. Embed the question 
-2. Query ChromaDB (Retreive most relevant syllabus chunks)
-3. Send retreived content + question to GPT 
-4. Generate syllabus-grounded answer.
-'''
-
-client = OpenAI(
-        api_key=os.environ.get("NRP_API_KEY"),
-        base_url="https://ellm.nrp-nautilus.io/v1",
+    results = collection.query(
+        query_texts=[query.strip()], n_results=min(n_results, count)
     )
+    matches = (results.get("documents") or [[]])[0]
+    if not matches:
+        return ""
+    return "\n\n".join(matches)
 
-prompt = f"{user_query}. Use this context for answering: {context}"
 
-response = client.chat.completions.create(
-    model="gpt-oss",
-    messages=[
-        {
-            "role": "system",
-            "content": (
-                "Use only the infomation given. Use text only, do not output anything that is rendered as markdown."
-                "If the answer is not found in the syllabus, say so; do not assume or create information."
-            ),
-        },
-        {"role": "user", "content": prompt}
-    ],
-)
+def get_collection(document_path, persist_directory=DEFAULT_PERSIST_DIRECTORY):
+    """Load the persistent syllabus index, creating it from the PDF if empty."""
+    document = pathlib.Path(document_path)
+    if not document.is_file():
+        raise FileNotFoundError(f"Syllabus PDF not found: {document}")
 
-print(response.choices[0].message.content)
+    client = chromadb.PersistentClient(path=str(persist_directory))
+    collection = client.get_or_create_collection(name="syllabus")
+    if collection.count() == 0:
+        tokenizer = tiktoken.get_encoding("cl100k_base")
+        clean_text = text_extraction(document)
+        chunks = create_chunks(clean_text, 200, tokenizer, overlap=40)
+        text_chunks = [tokenizer.decode(chunk) for chunk in chunks]
+        add_data(collection, text_chunks, source=document)
+    return collection
+
+
+def answer_question(
+    question, document_path, persist_directory=DEFAULT_PERSIST_DIRECTORY
+):
+    """Retrieve syllabus context and answer a question with Nautilus gpt-oss.
+
+    This function is shared by the typed RAG CLI and ``stt_rag.py`` so a
+    transcribed question can enter the same retrieval and answer pipeline.
+    """
+    if not isinstance(question, str) or not question.strip():
+        raise ValueError("question must be a non-empty string")
+
+    api_key = os.environ.get("NRP_API_KEY") or os.environ.get("OPENAI_API_KEY")
+    if not api_key:
+        raise RuntimeError("Set NRP_API_KEY (or OPENAI_API_KEY) for Nautilus access.")
+
+    collection = get_collection(document_path, persist_directory)
+    context = retrieve_context(collection, question)
+    client = OpenAI(
+        api_key=api_key,
+        base_url=os.environ.get(
+            "NAUTILUS_BASE_URL", "https://ellm.nrp-nautilus.io/v1"
+        ),
+    )
+    response = client.chat.completions.create(
+        model="gpt-oss",
+        messages=[
+            {
+                "role": "system",
+                "content": (
+                    "Answer the question using only the supplied syllabus context. "
+                    "If it does not contain enough information, say so. Do not "
+                    "invent syllabus details."
+                ),
+            },
+            {
+                "role": "user",
+                "content": (
+                    f"Question:\n{question.strip()}\n\n"
+                    f"Retrieved syllabus context:\n{context}"
+                ),
+            },
+        ],
+    )
+    return response.choices[0].message.content
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Ask a question about the syllabus.")
+    parser.add_argument("syllabus_pdf", help="path to the syllabus PDF")
+    parser.add_argument(
+        "--question", help="question to answer; prompts interactively if omitted"
+    )
+    parser.add_argument(
+        "--persist-directory",
+        default=str(DEFAULT_PERSIST_DIRECTORY),
+        help="directory for the persistent Chroma index",
+    )
+    args = parser.parse_args()
+    question = args.question or input("What would you like to know?\n> ")
+    answer = answer_question(question, args.syllabus_pdf, args.persist_directory)
+    print(answer)
+
+
+if __name__ == "__main__":
+    main()

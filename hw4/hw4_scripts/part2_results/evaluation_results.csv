@@ -1,0 +1,201 @@
+article_number,true_category,mlp_category,agent_category,justification,latency_seconds
+1,Sports,Sports,Sports,"The article reports on an NFL game, describing a field goal, touchdowns, and the teams' performance, which is sports news.",0.992
+2,Sci/Tech,Sci/Tech,Sci/Tech,"The article discusses a researcher’s work on marine mammal acoustics and a database of underwater calls, which pertains to scientific research and technology.",1.069
+3,Business,Business,Business,"The article discusses Air Canada shares and their price movement, which pertains to financial markets and corporate news, fitting the Business category.",0.678
+4,Sports,Sports,Sports,"The article discusses a golfer's recent win and his upcoming participation in the Ryder Cup, which are sports events.",0.709
+5,Sports,Sports,Sports,"The article reports on a tennis match and a player's advancement to the semi-finals, which is sports news.",0.768
+6,Sports,Sports,Sports,"The article discusses Tiger Woods' marriage and its potential impact on his golf performance, which is a sports-related topic.",0.693
+7,Business,Business,Sci/Tech,"The article discusses newly released traffic crash fatality data and the safety of sport utility vehicles, focusing on technical safety information rather than sports, general world events, or business finance.",1.564
+8,Business,Business,Business,"The article reports a corporate leadership appointment at Air Canada, focusing on airline management and corporate structure, which falls under business news.",0.73
+9,Business,Business,Business,"The article discusses corporate acquisition activity and a company's decision not to bid for another airline, which is business-related news.",0.715
+10,Business,Sci/Tech,Business,"The article discusses enterprise software trends, venture capital funding, and business models for on-demand services, focusing on corporate strategy rather than pure technology details.",0.981
+11,World,World,World,"The article discusses the deportation and extradition of a radical Islamic cleric involving Germany and Turkey, which is international political news.",0.786
+12,World,World,World,"The article reports on former President Bill Clinton's medical procedure, a news item about a prominent political figure, fitting the World news category.",0.734
+13,Sports,Sports,Sports,"The article discusses the Golden State Warriors basketball team and decisions by Chris Mullin, which are clearly related to sports.",0.751
+14,World,World,World,"The article discusses diplomatic appointments and international relations involving U.S. ambassadors, which falls under world news.",0.76
+15,World,World,World,"The article discusses militants, UN hostages, and diplomatic talks in Afghanistan, which are matters of international affairs and conflict, fitting the World news category.",0.932
+16,Sci/Tech,Sci/Tech,Business,"The article discusses a corporate partnership and product offerings in telecommunications, which pertains to business news.",0.815
+17,World,World,World,"The article discusses U.S. foreign policy and potential sanctions against Belarus, which is an international political issue.",0.755
+18,Sports,World,World,"The article discusses cultural practices and observations in Europe, which pertains to general international or regional news rather than sports, business, or technology.",1.019
+19,Sports,Sports,Sports,"The article discusses legal actions related to a brawl that occurred at an NBA (sports) game, focusing on the incident and individuals involved in the sports context.",0.803
+20,World,World,World,"The article reports on a political development in Hungary, a national government event, which falls under international/world news.",0.662
+21,Sci/Tech,Sci/Tech,Business,"The article reports on Hewlett-Packard's corporate strategy and product lineup expansion, which is business news about a company's activities.",1.103
+22,World,World,World,"The article discusses US military medical operations and troop equipment abroad, which is international news rather than sports, business, or technology.",1.489
+23,Sports,Sports,Sports,"The article reports on judo competition results, which is a sporting event.",0.575
+24,Sports,Sports,Sports,"The article reports on a football game and player performance, which falls under sports news.",0.877
+25,Sports,Sports,Sports,"The article discusses a baseball player (Rafael Furcal) and the Atlanta Braves, focusing on a DUI arrest and its impact on the team's season, which is sports news.",0.802
+26,Sports,Sports,Sports,"The article discusses NCAA allegations related to a college basketball program, which is a sports topic.",0.643
+27,Sci/Tech,Sci/Tech,Business,"The article focuses on consumer demand and retail activity around a Nintendo DS at Circuit City, mentioning a publicly traded retailer, which aligns with business news.",1.564
+28,World,World,World,"The article reports on the death and funeral of a political leader and international dignitaries, which is a global political news story.",0.719
+29,Business,Business,Business,"The article discusses oil price movements and trader profit-taking, focusing on market dynamics and commodities, which falls under the Business category.",0.714
+30,Sci/Tech,Sci/Tech,Sci/Tech,"The article discusses a new weather sensor product and its technology, focusing on personal weather stations, which falls under science and technology.",0.795
+31,Sports,Sports,Sports,"The article reports on Bode Miller's victory in a giant slalom ski race, which is a sporting event.",0.688
+32,Sports,Sports,Sports,"The article discusses a UEFA Cup match, detailing goals and the result, which is clearly about football, a sports event.",0.639
+33,World,World,World,"The article discusses a United Nations report and funding needs for global population programs, which is a matter of international affairs.",1.048
+34,Sports,Sports,Sports,"The article focuses on Husker Nation's excitement for the upcoming college football season, which is sports-related.",0.776
+35,Business,Business,Business,"The article discusses the relocation timeline and cost estimates of a university medical school, focusing on financial and administrative aspects, which aligns with Business news.",1.791
+36,Business,Business,Business,"The article reports on a corporate acquisition (Dow Jones buying MarketWatch), which is a business/financial transaction.",0.693
+37,Business,Business,Business,"The article reports on a commercial contract for oil tankers and its impact on supertanker prices, which is business/industry news.",1.154
+38,Business,World,Business,"The article discusses government action against a major oil company, focusing on economic and corporate implications, which fits the Business category.",1.221
+39,World,World,World,"The article reports the death of a Bollywood actress, which is general news about a public figure, fitting the World news category.",0.92
+40,Sci/Tech,Sports,Sci/Tech,"The article discusses a medical/health intervention (meditation) for arthritis, which relates to scientific and technological aspects of health care.",1.007
+41,Business,Business,Business,"The article discusses low-income lending, Fannie Mae's role in mortgage financing, and potential impacts on homeownership, which are topics related to finance and the economy.",0.79
+42,Business,Business,Business,"The article discusses stock market movements, oil price changes, and a major IPO, all topics related to finance and economics.",0.985
+43,Sports,Sports,Sports,"The article reports on a football (soccer) manager resigning, which is a sports-related news item.",0.642
+44,World,World,World,"The article discusses diplomatic relations and international politics between China and France, which falls under world news.",0.885
+45,Sports,Sports,Sports,"The article discusses baseball teams, managers, and a playoff series, which are topics related to sports.",0.712
+46,Business,Business,Business,"The article discusses corporate restructuring, a merger of business units, and job cuts at a major financial institution, which are typical business news topics.",0.717
+47,Business,Business,Business,"The article discusses a high-profile executive's legal issue related to a stock trade, which is a business/financial matter.",0.767
+48,Business,Business,Business,"The article discusses corporate decisions and airline acquisition considerations, which are topics related to business and finance.",0.82
+49,Sports,Sports,Sports,"The article discusses LeBron James, an NBA player, his injury and potential game participation, which pertains to sports.",1.11
+50,Business,Business,Business,"The article reports on a corporate deal and financial aspects of a biomedical company's drug distribution, which fits the Business news category.",1.178
+51,Sci/Tech,Sci/Tech,Sci/Tech,"The article discusses a new data-storage technology and operating system development by Microsoft, which pertains to technology news.",0.834
+52,Business,Business,Business,"The article discusses oil price movements and their relation to political election results, focusing on market and economic implications, which fits the Business category.",0.937
+53,World,World,World,"The article reports on a UN tribunal decision regarding a former Yugoslav leader, which is a political/legal event of international relevance, fitting the World news category.",1.04
+54,World,World,World,"The article discusses a former US Army sergeant's defection to North Korea and his release from detention in Japan, which are international political and military events.",0.871
+55,Sports,Sports,Sports,"The article reports on a tennis match and a player's progress in a tournament, which is sports news.",0.705
+56,Sci/Tech,Sci/Tech,Business,"The article discusses a corporate strategy and market competition between Novell and Microsoft, focusing on business implications of the Linux conversion.",1.093
+57,Sports,Sports,Sports,"The article reports on a golf tournament result, focusing on Ernie Els' victory, which is sports news.",0.603
+58,World,World,World,"The article reports on a natural disaster (landslides and floods) affecting the Philippines, which is international news rather than sports, business, or technology.",0.854
+59,Sci/Tech,Sci/Tech,Sci/Tech,"The article discusses a new optical disc drive prototype and its technical specifications, which falls under science and technology news.",0.702
+60,Business,Business,Business,"The article discusses a former Pentagon official's criminal case involving favoritism toward Boeing, a major corporation, focusing on corporate contracts and legal consequences, which fits the Business news category.",1.233
+61,Business,Business,Business,"The article discusses a new federal law affecting check floating, a banking and financial regulation issue, which fits the Business category.",1.096
+62,Sci/Tech,Sci/Tech,World,"The article reports on an archaeological discovery by an Arctic team, a historical and geographic event, which fits the general news scope of the World category.",1.033
+63,Sci/Tech,Sci/Tech,Sci/Tech,"The article discusses a technological innovation (CableCard) for TV sets, focusing on its function and adoption, which fits the Sci/Tech category.",0.952
+64,Sci/Tech,Sci/Tech,Business,"The article reports on a corporate acquisition deal (Cisco acquiring P-Cube), which is a business/financial news item.",1.015
+65,Sci/Tech,Sci/Tech,Sci/Tech,"The article discusses AMD's partnership for semiconductor manufacturing and chip production, which pertains to technology and computing.",0.984
+66,Sports,Sports,Sports,"The article reports on a college basketball game result, which is sports news.",0.649
+67,Business,Business,Business,"The article discusses the potential impact of a political event (the Republican National Convention) on the stock market, focusing on financial market movements, which fits the Business category.",0.889
+68,Business,Business,Business,"The article reports on a pharmaceutical company's drug trial results and its impact on development, which is business-related news about a corporate product.",2.275
+69,Sci/Tech,Sci/Tech,Sci/Tech,"The article discusses rocket launches and aerospace companies, which are topics related to science and technology.",0.676
+70,World,Sci/Tech,Business,"The article reports on a corporate partnership and expansion of software services, focusing on business activities rather than pure scientific or sports topics.",1.106
+71,World,World,World,"The article reports a terrorist attack in Kabul, a political/conflict event of international relevance, fitting the World news category.",0.832
+72,World,World,World,"The article discusses EU political developments and a vote involving EU leaders, which falls under international/world news.",0.666
+73,Business,Business,Business,"The article discusses airline ticketing fees and responses by Sabre, a travel technology company, focusing on industry and commercial practices, which fits the Business category.",0.866
+74,Sci/Tech,Sci/Tech,Business,"The article discusses Nokia's new handset product launch and its market strategy, focusing on business decisions rather than pure scientific or sports content.",0.899
+75,Sports,Sports,Sports,"The article discusses a football player signing with Newcastle United, which is a sports-related news item.",0.699
+76,Sports,Sports,Sports,"The article focuses on a high-profile basketball player, Kobe Bryant, and a legal case directly related to his sports career, fitting the Sports news category.",1.315
+77,Business,Sci/Tech,Sci/Tech,"The article discusses cellphone carriers and the creation of a public listing of wireless phone numbers, which pertains to telecommunications technology.",0.945
+78,Business,Business,Business,"The article discusses Diebold Inc.'s earnings forecast cut and its business operations, which is financial and corporate news.",1.062
+79,Sci/Tech,Sci/Tech,Sci/Tech,"The article discusses Symantec's new antiphishing service, a cybersecurity technology product, which falls under science and technology news.",0.782
+80,World,Business,Business,"The article discusses a utility company's plan for an initial public offering, which is a financial and corporate event, fitting the Business category.",0.705
+81,Sci/Tech,Sci/Tech,Sci/Tech,"The article discusses a fossil discovery and scientific insights into ancient reptiles, which falls under science/technology.",0.713
+82,Sci/Tech,Sci/Tech,Sci/Tech,"The article discusses IBM's Blue Gene supercomputer and its commercial availability, which is a technology-focused topic.",0.734
+83,World,World,World,"The article discusses US military actions against the Taliban in Afghanistan, a geopolitical and international affairs topic, fitting the World news category.",0.723
+84,Sci/Tech,Sci/Tech,Sci/Tech,"The article discusses a supercomputer and its performance, which pertains to technology and scientific computing.",0.616
+85,Sports,Sports,Sports,"The article discusses a boxing match between Ronald Wright and Sugar Shane Mosley, which is a sports event.",0.792
+86,Sci/Tech,Sci/Tech,Business,"The article reports on HP's corporate decision to exit chip development, which is a business/financial news item rather than a scientific or sports story.",1.156
+87,Sci/Tech,Sci/Tech,World,"The article reports on a law enforcement action and criminal charges in the United States, which fits the general news (World) category rather than sports, business, or technology topics.",1.837
+88,World,World,World,"The article reports on a French court viewing a terrorist plot video, a political/security event of international relevance, fitting the World news category.",0.954
+89,World,World,World,"The article reports on bomb blasts and casualties in Nagaland and Assam, which is a political/terrorism event, fitting the World news category.",0.891
+90,Sports,Sports,Sports,"The article discusses a baseball game between the Yankees and Red Sox, which is a sports event.",0.728
+91,Business,Business,Business,"The article discusses a company's marketing and branding strategy, which is typical business news.",0.884
+92,Business,Business,Business,"The article discusses a company's stock price drop and a legal probe affecting its US division, which are topics related to corporate finance and market news.",1.068
+93,Sports,Sports,Sports,"The article discusses a football player's injury and withdrawal from an international match, which is sports news.",0.648
+94,Business,Business,Business,"The article discusses Merck's drug recall and potential lawsuits, focusing on corporate actions and legal/financial implications, which fit the Business category.",1.47
+95,Sci/Tech,Sci/Tech,Business,"The article discusses a legal action by Hollywood movie studios against server operators, focusing on the business and legal aspects of the film industry.",1.094
+96,World,World,World,"The article discusses political statements by a Canadian leader about the U.S. election, which is international political news.",0.851
+97,Sci/Tech,Sci/Tech,Sci/Tech,"The article discusses a total lunar eclipse, an astronomical event, which falls under the science/technology domain.",0.665
+98,Sports,Sports,Sports,"The article discusses a cricket tournament, focusing on match results and teams competing for semifinal spots, which is sports news.",0.628
+99,Sports,Sports,Sports,"The article discusses professional golfer Justin Rose's hole-in-one, which is a sports event.",0.774
+100,Business,Business,Business,"The article discusses stock market movements and the influence of semiconductor-related companies, which pertains to financial and business news.",0.658
+101,Business,Business,Business,"The article discusses airline revenue growth and corporate performance of Air France-KLM, which pertains to business news.",0.657
+102,Business,Business,Business,"The article discusses Apple’s stock downgrade and valuation, which pertains to financial markets and corporate performance, fitting the Business category.",0.688
+103,Business,Sports,Business,"The article focuses on banks pursuing a legal ruling that could affect ownership of Formula One, highlighting financial and corporate aspects rather than the sport itself.",1.414
+104,World,World,World,"The article reports on a Kenyan environmentalist receiving the Nobel Peace Prize, a significant international political and humanitarian event, fitting the World news category.",0.817
+105,Sci/Tech,Sci/Tech,Sci/Tech,"The article discusses Adobe's photo editing software, focusing on features and usability, which pertains to technology and digital tools.",0.656
+106,Sci/Tech,Sci/Tech,Sci/Tech,"The article discusses a scientific discovery about a new human species, which falls under science/technology.",2.153
+107,World,World,World,"The article reports on US military personnel killed in Iraq, which is an international conflict topic falling under World news.",1.286
+108,Sports,Sports,Sports,"The article discusses a football match, a club's complaint to UEFA, and fan violence, all related to sports.",1.016
+109,Business,Business,Business,"The article discusses currency fluctuations, the dollar and euro, and their impact on the UK, which pertains to financial and economic news.",1.066
+110,World,World,World,"The article reports an international incident—a Briton killed in Saudi Arabia—making it a world news story rather than sports, business, or sci/tech.",1.538
+111,World,World,World,The article reports an international incident—a fatal bus crash involving British tourists in Jordan—making it a world news story.,1.093
+112,World,World,World,"The article reports on an international criminal case involving a Colombian drug cartel leader being extradited to the United States, which is typical of world news.",0.83
+113,Business,Business,Business,"The article discusses Coca-Cola's product launch decision and market strategy, which pertains to corporate and consumer business news.",0.73
+114,Sports,Sports,Sports,"The article discusses Robin Van Persie, Arsenal, and a Premier League match, which are topics related to football, a sports subject.",0.989
+115,Sports,Sports,Sports,"The article describes a game recap, player performance, and a college basketball upset, which are clearly sports-related content.",1.054
+116,Sci/Tech,Sci/Tech,Business,"The article reports on IBM's acquisition of a software company, focusing on corporate activity and market implications, which fits the Business category.",0.948
+117,Sci/Tech,Sci/Tech,Business,"The piece discusses new state regulations targeting dairy farm emissions, a policy issue that directly impacts the agricultural industry and its economic practices.",1.724
+118,Business,Business,Business,"The article discusses U.S. consumer price trends, inflation, and interest rate policy, which are economic and financial topics fitting the Business category.",0.845
+119,Sci/Tech,Sci/Tech,Business,"The article reports on a corporate relocation and job creation, which are topics related to business and the economy.",0.82
+120,Sci/Tech,Sci/Tech,Sci/Tech,"The article discusses HP and Intel ending their partnership on the Itanium chip, focusing on technology development rather than financial markets or sports.",1.143
+121,Sports,Sports,Sports,"The article discusses a cricket player being called up to the Australian Test squad, which is a sports-related news item.",0.646
+122,Sports,Sports,Sports,"The article reports on a tennis match result at the Paris Masters, which is a sports event.",0.684
+123,Sports,Sports,Sports,"The article discusses a boxing match and the knockout of Roy Jones, which is a sports event.",0.787
+124,Sports,Sports,Sports,"The article discusses a college football player's eligibility and the NCAA appeal process, which pertains to sports news.",0.623
+125,Business,Business,Business,"The article discusses crude oil futures, market speculation, and demand factors, which are topics related to finance and commodities markets.",0.68
+126,Sports,Sports,Sports,"The article reports on a basketball game between the Philadelphia 76ers and Washington Wizards, which is a sports event.",0.655
+127,Business,World,Business,"The article discusses a government-backed organization seeking financial assistance for a retailer, which is a business/financial matter.",0.736
+128,Business,Business,Business,"The article reports on a corporate action by Ford Motor Co. to fix a product defect, which is a business/industry news item.",1.041
+129,World,World,World,"The article reports on a hurricane affecting Jamaica and evacuation efforts in Florida, which are topics of international news rather than sports, business, or technology.",0.998
+130,Sci/Tech,Sci/Tech,Sci/Tech,"The article discusses online security and research on internet users, which falls under technology topics.",0.832
+131,World,World,World,"The article reports on a flooding disaster in Panama, a geographic and humanitarian event, which fits the World news category.",0.742
+132,Sci/Tech,Sci/Tech,Sci/Tech,"The article discusses the FBI's action against a peer-to-peer (P2P) network, focusing on technology and cybercrime, which fits the Sci/Tech category.",1.305
+133,Sports,Sports,Sports,"The article discusses a football (soccer) player’s injury and his potential participation in a World Cup qualifier, which is sports news.",0.781
+134,World,World,World,"The article discusses political developments in Afghanistan, an international affair, fitting the World news category.",0.621
+135,Business,Business,Business,"The article discusses a labor dispute and negotiations between hotel employers and a workers' union, which pertains to business and employment issues.",1.001
+136,Sci/Tech,Sci/Tech,Business,"The article discusses company leadership changes, entrepreneurship, and corporate strategy, which are topics related to business news.",0.882
+137,Sci/Tech,Sci/Tech,Sci/Tech,"The article discusses an astronomical discovery about a supernova and its companion star, which falls under science.",0.733
+138,World,World,World,"The article reports a tragic incident (gas explosion) in a Chinese coal mine, which is a news event of international relevance, fitting the World category.",0.887
+139,Sci/Tech,Business,Business,"The article discusses DreamWorks Animation's initial public offering, focusing on share numbers and pricing, which pertains to financial and corporate news.",0.699
+140,Sci/Tech,Sci/Tech,Business,"The article discusses market size, competition, and commercial aspects of MP3 players, focusing on business dynamics rather than scientific or sports topics.",1.149
+141,Business,Business,Business,"The article reports on a corporate acquisition deal between Symantec and Veritas, which is typical business news.",0.953
+142,World,World,World,"The article reports a military incident involving Israeli and Egyptian soldiers, which is international political news, fitting the World category.",0.75
+143,World,World,World,"The article reports on political developments in Chechnya, a region in Russia, which is international news rather than sports, business, or technology.",0.766
+144,Sci/Tech,Sci/Tech,Business,"The article reports on global mobile phone sales figures and market performance, which is a business/economic news topic.",1.01
+145,Business,Business,Business,"The article reports on General Mills' corporate decision to change its cereal formulations, which is a business-related development.",0.717
+146,Sci/Tech,Sci/Tech,Sci/Tech,"The article discusses a new solar sail spacecraft, which is a technological development in space exploration, fitting the Science/Technology category.",0.665
+147,Sci/Tech,Business,Business,"The article reports on Corning's corporate expansion and market demand for LCD glass, focusing on business activity rather than scientific or sports content.",2.27
+148,Sports,Sports,Sports,"The article describes Michael Wardian participating in a marathon, which is a sporting event.",0.639
+149,Business,Business,Business,"The article discusses Lenovo's acquisition negotiations, which is a corporate and financial activity, fitting the Business category.",0.65
+150,Sports,Sports,Sports,"The article focuses on a high school football schedule and key games, which pertains to sports.",0.723
+151,Sports,Sports,Sports,"The article reports on a tennis match result, which is a sports event.",0.619
+152,Sci/Tech,Sci/Tech,Sci/Tech,"The article discusses the launch of a new handheld gaming console and competition in the portable game market, which pertains to technology and consumer electronics.",0.752
+153,Business,Business,Business,"The article discusses stock exchange merger negotiations and financial market developments, which are topics related to business and finance.",0.72
+154,Sports,Sports,Sports,"The article discusses baseball player Barry Bonds, his contract, and future with the San Francisco Giants, which is sports news.",0.764
+155,World,World,World,"The article reports on a war crimes case involving a Bosnian Serb general and the siege of Sarajevo, which is a political and international conflict topic, fitting the World news category.",0.859
+156,World,World,World,"The article reports on British military deployment in Baghdad, which is an international political/military event, fitting the World news category.",1.093
+157,Sports,Sports,Sports,"The article discusses a football team's quarterback being benched, which is a sports-related topic.",0.615
+158,Sci/Tech,Sci/Tech,Sci/Tech,"The article discusses scientific research on how electric light may affect genes and increase cancer risk, which falls under science/technology.",0.83
+159,Sci/Tech,Sci/Tech,Sci/Tech,"The article discusses IBM's launch of new Power5-processor servers, focusing on technology and computing hardware.",0.976
+160,Business,Business,Business,"The article discusses Wal-Mart's sales outlook and retail performance, which pertains to commerce and corporate earnings, fitting the Business category.",0.73
+161,Business,Business,Business,The article discusses a major corporate financial event—Trump's casino business filing for bankruptcy and restructuring debt—making it business news.,0.695
+162,World,Sci/Tech,World,"The article reports on a significant natural disaster (earthquake) affecting a region, which is typical of general news coverage and fits the World news category.",0.925
+163,World,World,World,"The article discusses the European Union's involvement in rebuilding Somalia, which is an international political and humanitarian issue, fitting the World news category.",0.731
+164,Sports,Sports,Sports,"The article discusses Tom Lehman's prospective role as US Ryder Cup captain, which pertains to golf, a sports topic.",1.005
+165,World,World,World,"The article discusses a diplomatic move by Australia involving its embassy in Baghdad, which is an international political event, fitting the World news category.",0.701
+166,World,World,World,"The article reports a kidnapping incident in Iraq involving a Lebanese-American contractor, which is an international political/security event, fitting the World news category.",0.767
+167,Sci/Tech,Sci/Tech,Sci/Tech,"The article discusses a scientific discovery about the interior structure of Jupiter's moon Ganymede, which falls under science and technology.",0.67
+168,World,World,Business,"The article focuses on the emergence of a niche market for sex toys in the Philippines, discussing business opportunities and challenges within a specific cultural context.",0.985
+169,Sci/Tech,Sci/Tech,Sci/Tech,"The article discusses observations by the Cassini spacecraft of Saturn's moon Tethys, which is a topic related to space science and technology.",0.739
+170,Business,Business,Business,"The article discusses government-reported economic growth estimates and consumer/business spending, which are topics related to the economy and finance.",0.764
+171,Sci/Tech,Sci/Tech,Sci/Tech,"The article discusses the popularity of the term 'blog' and its definition on an online dictionary, which relates to internet culture and technology.",1.053
+172,Business,Business,Business,"The article reports on Johnson & Johnson's advanced negotiations to acquire another company, which is a corporate acquisition and financial activity, fitting the Business category.",0.876
+173,World,World,World,"The article reports on casualties and renewed violence in Iraq, which is international political/military news, fitting the World category.",0.774
+174,World,World,World,"The article discusses a political and human-interest story about an American defector from North Korea, which is international news rather than sports, business, or technology.",0.752
+175,Business,Business,Business,"The article discusses a corporate acquisition deal involving Comcast, Sony, and MGM, which is a business/financial transaction.",0.873
+176,Sci/Tech,Sci/Tech,Business,"The article reports on Boeing's corporate plan to add a new service, focusing on a business decision rather than a scientific breakthrough or sports event.",1.484
+177,Sci/Tech,Sci/Tech,World,"The article discusses political behavior and voter media consumption, which is a political/social issue and fits the World news category.",1.037
+178,Sports,Sports,Sports,"The article describes a football match between Birmingham and Newcastle, focusing on game events, which is sports news.",0.644
+179,World,World,World,"The article reports on a labor strike in South Korea over a government labor reform bill, focusing on political and societal issues rather than sports, business performance, or technology.",1.737
+180,Sci/Tech,Sci/Tech,Sci/Tech,"The article discusses findings from a Mars space mission instrument, which is a scientific/technological topic.",1.084
+181,Business,Sci/Tech,Sci/Tech,"The article discusses the digital television transition and a federal education campaign about this technical change, which pertains to technology and media infrastructure.",0.891
+182,Sports,Sports,Sports,"The article reports on college soccer match results and a championship game, which are sports-related content.",0.694
+183,World,World,World,"The article reports on a political and security development in Iraq, involving government actions and military operations, which falls under international/world news.",0.769
+184,World,World,World,"The article reports a violent incident (explosion) at a bank in Buenos Aires, an international news event, fitting the World category.",1.036
+185,World,World,World,"The article reports on a defense ministry statement about China's military movements, which is international political/military news, fitting the World category.",0.754
+186,World,World,World,"The article reports on Palestinian presidential elections, a political event of international relevance, fitting the World news category.",0.638
+187,Sports,Sports,Sports,"The article discusses the Indianapolis Colts' football schedule and mentions NFL players, which is sports news.",0.656
+188,Sci/Tech,Sci/Tech,Business,"The article reports on a company's strategic expansion and investment in broadband infrastructure, focusing on corporate activity rather than pure scientific or sports content.",1.661
+189,Sports,Sports,Sports,"The article discusses an NBA brawl, penalties for players, and league actions, which are clearly related to sports.",0.84
+190,Sci/Tech,Sci/Tech,Sci/Tech,"The article discusses IBM's Blue Gene/L supercomputer and its pricing, which pertains to technology and computing.",0.716
+191,Sports,Sports,Sports,"The article discusses the Boston Red Sox's performance and injuries in the AL championship series, which is a baseball sporting event.",0.656
+192,World,World,World,"The article discusses political criticism of President Bush and national issues, which fits the World news category.",1.013
+193,Sports,Sports,Sports,"The article discusses a football club's transfer fees and player payments, which pertains to sports.",0.7
+194,Business,Business,Business,"The article discusses the Dow Jones index falling due to Wal-Mart's earnings and rising producer costs, focusing on financial markets and corporate performance, which fits the Business category.",0.822
+195,World,World,World,"The article reports on a bombing in Afghanistan and UN staff safety, which pertains to international political events and conflicts, fitting the World news category.",0.846
+196,World,World,World,"The article discusses Poland's military deployment in Iraq, which is an international political and security issue, fitting the World news category.",0.7
+197,Sci/Tech,Sci/Tech,Sci/Tech,"The article discusses Airbus's technological development to enable mobile phone use on airplanes, focusing on aviation technology and innovation.",1.022
+198,Sports,Sports,Sports,"The article discusses a professional racing driver joining a Formula One team, which is a sports-related topic.",0.689
+199,Sports,Sports,Sports,"The article reports on a Serie A football match between Palermo and Messina, which is a sports event.",0.726
+200,Business,Business,Business,"The article reports on Kodak's corporate restructuring and job cuts, focusing on business operations and industry shift.",0.775
